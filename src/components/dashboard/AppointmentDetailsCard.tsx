@@ -1,11 +1,21 @@
-import { FaCreativeCommonsSa } from "react-icons/fa"
+// import { FaCreativeCommonsSa } from "react-icons/fa"
 import { candlestickData } from "../../utils/chartData"
+import Advertisement from "../Advertisement"
 import CandlestickChart from "../chart/CandlestickChart"
 
 const AppointmentDetailsCard = () => {
   return (
     <div className="flex gap-3 w-full flex-col md:flex-row justify-between">
+      <div className="p-5 bg-primary bg-opacity-5 w-full">
+        <p className="pb-5 font-bold text-xl">Omnicoin chart</p>
+        <CandlestickChart data={candlestickData} />
+      </div>
+
       <div className="p-5 bg-primary flex flex-col gap-3 bg-opacity-5 w-full">
+        <Advertisement />
+      </div>
+      
+      {/* <div className="p-5 bg-primary flex flex-col gap-3 bg-opacity-5 w-full">
         <p className="pb-5 font-bold text-xl">Omnicoin data</p>
         <div className="flex gap-2 flex-col">
           <div className="flex text-light justify-between">
@@ -39,15 +49,11 @@ const AppointmentDetailsCard = () => {
             <span className="my-auto">Buy Omnicoin</span>
           </button>
           <button className="w-full py-3 border-2 flex justify-center items-center gap-3 text-primary font-bold border-primary hover:border-light hover:text-light duration-200 rounded-md">
-            {/* <div className="my-auto"><FaCreativeCommonsSa /></div> */}
+            <div className="my-auto"><FaCreativeCommonsSa /></div>
             <span className="my-auto">View on coin geco</span>
           </button>
         </div>
-      </div>
-      <div className="p-5 bg-primary bg-opacity-5 w-full">
-        <p className="pb-5 font-bold text-xl">Omnicoin chart</p>
-        <CandlestickChart data={candlestickData} />
-      </div>
+      </div> */}
     </div>
   )
 }

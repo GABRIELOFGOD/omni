@@ -7,6 +7,8 @@ interface GlobalContextType {
 
 export const GlobalContext = createContext<GlobalContextType | null>(null);
 
+export const BASEURL = "http://localhost:3000/api/v2";
+
 export const ContextProvider = ({children}: {children: ReactNode}) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
 
