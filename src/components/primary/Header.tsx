@@ -17,6 +17,11 @@ const Header = () => {
   useEffect(() => {
     getUserData();
   }, []);
+
+  const logout = () => {
+    sessionStorage.removeItem("token");
+    window.location.href = "/";
+  }
   
   return (
     <div className="py-2 md:py-4 shadow-sm sticky top-0 left-0 z-40 bg-secondary px-3 md:px-20 flex justify-between">
@@ -26,7 +31,7 @@ const Header = () => {
         </div>
         <Link to="/" className="my-auto"><p className="font-semibold md:text-2xl text-lg text-white my-auto ">OMNI-STOCK</p></Link>
       </div>
-      <div className="hidden md:flex gap-5 my-auto">
+      {/* <div className="hidden md:flex gap-5 my-auto">
         <div className="flex gap-1 text-white">
           <p className="my-auto text-[16px]">NFT</p>
           <div className="my-auto"><IoIosArrowDown /></div>
@@ -43,7 +48,7 @@ const Header = () => {
           <p className="my-auto text-[16px]">Exchange</p>
           <div className="my-auto"><IoIosArrowDown /></div>
         </div>
-      </div>
+      </div> */}
       <div className="flex gap-10 my-auto">
         <div className="md:flex hidden divide-x-2 gap-5">
           <div className="flex my-auto gap-3">
@@ -52,16 +57,16 @@ const Header = () => {
             </div>
             <p className="my-auto text-white  text-[16px]">${formatMoney(userData?.balance || 0)}</p>
           </div>
-          <div className="flex m-auto gap-3 pl-5">
+          {/* <div className="flex m-auto gap-3 pl-5">
             <div className="p-2 h-fit w-fit bg-primary text-white rounded-full">
               <BsCoin />
             </div>
             <p className="my-auto text-white  text-[16px]">${formatMoney(userData?.claimable || 0)}</p>
-          </div>
+          </div> */}
         </div>
         <div className="flex gap-3">
           <div className={`h-2 w-2 rounded-full my-auto ${userData?.accountActivated ? "bg-green-500" : "bg-red-500"}`}></div>
-          <button
+          {/* <button
             className="flex gap-2 border border-light rounded-full py-3 px-3 border-opacity-30"
             onMouseEnter={() => setShowMenu(true)}
             onMouseLeave={() => setShowMenu(false)}
@@ -99,13 +104,20 @@ const Header = () => {
                   <p>Settings</p>
                   <RiArrowDropDownLine />
                 </Link>
-                <Link to="/logout" className="flex gap-2 text-white text-sm">
+                <button onClick={logout} className="flex gap-2 text-white text-sm">
                   <p>Logout</p>
                   <RiArrowDropDownLine />
-                </Link>
+                </button>
               </div>
             </div>
-          </button>
+          </button> */}
+          <div>
+            <button
+              className="py-2 px-6 text-white bg-primary font-semibold rounded-md"
+            >
+              Connect wallet
+            </button>
+          </div>
         </div>
       </div>
     </div>

@@ -1,6 +1,8 @@
 // import { BsCoin } from "react-icons/bs"
+import Advertisement from "../../components/Advertisement"
 import AppointmentCards from "../../components/dashboard/AppointmentCards"
 import AppointmentDetailsCard from "../../components/dashboard/AppointmentDetailsCard"
+import UserDataComponent from "../../components/dashboard/UserData"
 // import useAuth from "../../hooks/useAuth";
 // import { useEffect } from "react";
 
@@ -26,6 +28,13 @@ const DashboardHome = () => {
       </div> */}
       <AppointmentCards />
       <AppointmentDetailsCard />
+      <UserDataComponent />
+      <div className="p-5 bg-primary min-h-[200px] rounded-md flex-col bg-opacity-10 w-full">
+        <p className="pb-5 font-bold text-xl">Latest Updates</p>
+        <div className=" flex items-center justify-center">
+          <Advertisement />
+        </div>
+      </div>
     </div>
   )
 }

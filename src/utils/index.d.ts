@@ -6,6 +6,34 @@ export interface NavListType {
   icon: ReactNode;
 }
 
+
+export enum EarningStatus {
+  CLAIMED = "claimed",
+  PENDING = "pending",
+  EXPIRED = "expired",
+  CANCELLED = "cancelled",
+}
+
+export enum EarningType {
+  ONE_DOLLAR_MAGIC = "one-dollar-magic",
+  SIX_DOLLAR_MAGIC = "six-dollar-magic",
+  ROI = "roi",
+  REF_COMMISSION = "ref-commission",
+  REFERRAL_BONUS = "referral-bonus",
+}
+
+export enum UserRank {
+  USER = "us",
+  ASSOCIATE_GROUP_LEADER = "agl",
+  GROUP_LEADER = "gl",
+  ASSOCIATE_MASTER_LEADER = "aml",
+  MASTER_LEADER = "ml",
+  ASSOCIATE_LEADING_LEADER = "all",
+  LEADING_LEADER = "ll",
+  CROWN_LEADER = "cl",
+  PRINCE_OF_OMNI_STOCK = "pos",
+}
+
 export interface AppointmetnCardProp {
   
 }
@@ -13,10 +41,10 @@ export interface AppointmetnCardProp {
 export interface Earning {
   id: number;
   amount: number;
-  type: string;
+  type: EarningType;
   description: string;
   reference: string;
-  status: string;
+  status: EarningStatus;
   transactionId: string;
   createdAt: Date;
   updatedAt: Date;
@@ -35,14 +63,16 @@ export interface UserData {
   email: string;
   balance: number;
   claimable: number;
-  earnings: Earning[];
+  earningsHistory: Earning[];
   investments: Investment[];
   createdAt: Date;
   tradingBalance: number;
+  role: string;
   hasActiveInvestment: boolean;
   accountActivated: boolean;
   updatedAt: Date;
   isVerified: boolean;
+  rank: UserRank;
 }
 
 export interface UserRegisterData {
@@ -64,10 +94,18 @@ export interface Investment {
   expired: boolean;
   amountReturned: number;
   investor: UserData;
+  availableAmount: number;
   createdAt: Date;
   updatedAt: Date;
 }
 
+export interface DoughtnutChartProps {
+  color: "red" | "green" | "blue";
+  percentage: number;
+  // total: number;
+  completeLabel: string;
+  remainingLabel: string;
+}
   
 // import { Column, CreateDateColumn, Entity, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 // import { User } from "./user.entity";

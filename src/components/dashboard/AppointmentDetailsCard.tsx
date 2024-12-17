@@ -1,19 +1,23 @@
 // import { FaCreativeCommonsSa } from "react-icons/fa"
 import { candlestickData } from "../../utils/chartData"
 import Advertisement from "../Advertisement"
-import CandlestickChart from "../chart/CandlestickChart"
+// import CandlestickChart from "../chart/CandlestickChart"
+import AreaChart from "../chart/AreaChart"
 
 const AppointmentDetailsCard = () => {
   return (
     <div className="flex gap-3 w-full flex-col md:flex-row justify-between">
       <div className="p-5 bg-primary bg-opacity-5 w-full">
         <p className="pb-5 font-bold text-xl">Omnicoin chart</p>
-        <CandlestickChart data={candlestickData} />
+        {/* <CandlestickChart data={candlestickData} /> */}
+        <div className=' w-full h-[227px]'>
+          <AreaChart />
+        </div>
       </div>
 
-      <div className="p-5 bg-primary flex flex-col gap-3 bg-opacity-5 w-full">
+      {/* <div className="p-5 bg-primary flex flex-col gap-3 bg-opacity-5 w-full">
         <Advertisement />
-      </div>
+      </div> */}
       
       {/* <div className="p-5 bg-primary flex flex-col gap-3 bg-opacity-5 w-full">
         <p className="pb-5 font-bold text-xl">Omnicoin data</p>

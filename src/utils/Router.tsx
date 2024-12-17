@@ -20,11 +20,11 @@ export const router = createBrowserRouter([
         element: <DashboardHome />
       },
       {
-        path: "/exchange",
+        path: "/team",
         element: <Exchange />
       },
       {
-        path: "/bridge",
+        path: "/earnings",
         element: <Bridge />
       },
       {
@@ -32,15 +32,15 @@ export const router = createBrowserRouter([
         element: <OmniCoin />
       },
       {
-        path: "/portfolio",
+        path: "/invest",
         element: <Portfolio />
       },
       {
-        path: "/farm",
+        path: "/transactions",
         element: <Farm />
       },
       {
-        path: "/staking",
+        path: "/admin",
         element: <Staking />
       },
       {

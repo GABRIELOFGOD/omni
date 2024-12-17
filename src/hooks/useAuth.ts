@@ -1,7 +1,6 @@
 import { useCallback, useState } from "react";
 import { UserData } from "../utils";
 import { BASEURL } from "../context/GlobalContext";
-import { toast } from "sonner";
 // import { useNavigate } from "react-router-dom";
 
 export const getToken = () => {
@@ -21,7 +20,6 @@ const getProfile = async () => {
     }
   });
   const data = await response.json();
-  console.log(data);
   if (!response.ok) {
     throw new Error(data.message);
   }
@@ -43,8 +41,8 @@ const useAuth = () => {
       }
       setUserData(data.user);
     } catch (error: any) {
-      console.log(error);
-      toast.error(error.message);
+      // console.log(error);
+      // toast.error(error.message);
       setError(error.message);
     } finally {
       setIsLoading(false);

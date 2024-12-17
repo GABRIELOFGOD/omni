@@ -61,9 +61,9 @@
 
 // export default AppointmentCards
 
-import { BsWalletFill } from "react-icons/bs";
-import useAuth from "../../hooks/useAuth";
-import { useEffect } from "react";
+// import { BsWalletFill } from "react-icons/bs";
+// import useAuth from "../../hooks/useAuth";
+import { useEffect, useState } from "react";
 
 export const formatMoney = (amount: number | string): string => {
   const parsedAmount = typeof amount === "number" ? amount : parseFloat(amount || "0");
@@ -73,20 +73,35 @@ export const formatMoney = (amount: number | string): string => {
 };
 
 const AppointmentCards = () => {
-  const { userData, getUserData } = useAuth();
+  // const { userData, getUserData } = useAuth();
+
+  // useEffect(() => {
+  //   getUserData();
+  // }, []);
+
+
+  // const getSafeValue = (value: any): number => {
+  //   return typeof value === "number" ? value : parseFloat(value || "0");
+  // };
+
+  const [time, setTime] = useState("00:00");
 
   useEffect(() => {
-    getUserData();
+    const interval = setInterval(() => {
+      setTime((prevTime) => {
+        const [minutes, seconds] = prevTime.split(":").map(Number);
+        const newSeconds = (seconds + 1) % 60;
+        const newMinutes = newSeconds === 0 ? minutes + 1 : minutes;
+        return `${String(newMinutes).padStart(2, "0")}:${String(newSeconds).padStart(2, "0")}`;
+      });
+    }, 1000);
+
+    return () => clearInterval(interval);
   }, []);
-
-
-  const getSafeValue = (value: any): number => {
-    return typeof value === "number" ? value : parseFloat(value || "0");
-  };
 
   return (
     <div className="flex flex-col md:flex-row gap-1 w-full justify-between">
-      <div className="flex gap-3 rounded-sm border border-light px-4 py-3 backdrop-blur-md bg-light bg-opacity-5">
+      {/* <div className="flex gap-3 rounded-sm border border-light px-4 py-3 backdrop-blur-md bg-light bg-opacity-5">
         <div className="rounded-full p-2 my-auto bg-dark"><BsWalletFill /></div>
         <div>
           <p className="text-light">Total investment</p>
@@ -125,6 +140,10 @@ const AppointmentCards = () => {
           </p>
           <p className="text-xs text-light">Your total value from all farms, pools and InSpirit</p>
         </div>
+      </div> */}
+      <div className="flex gap-3 justify-between rounded-sm w-full px-4 py-3 backdrop-blur-md bg-light bg-opacity-5">
+        <p className="text-xl font-bold ">Server running time</p>
+        <p className="text-xl font-bold text-primary">{time}</p>
       </div>
     </div>
   );

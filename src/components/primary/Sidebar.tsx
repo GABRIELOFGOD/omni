@@ -1,38 +1,55 @@
 import { MdOutlineDashboard } from "react-icons/md"
 import { BsWalletFill, BsCurrencyExchange } from "react-icons/bs";
-import { TbBuildingBridge2, TbBrandBackbone } from "react-icons/tb";
 import { PiFarmLight } from "react-icons/pi";
-import { FaCreativeCommonsSa } from "react-icons/fa";
-import { GrStakeholder } from "react-icons/gr";
-import { IoMdTrendingUp } from "react-icons/io";
 import { NavLink } from "react-router-dom"
 import { useGlobalContext } from "../../context/GlobalContext";
+import { IoMdTrendingUp } from "react-icons/io";
+import useAuth from "../../hooks/useAuth";
+import { useEffect } from "react";
 // import { MenuItems } from "../../utils/constants"
 
 const Sidebar = () => {
-  const { sidebarOpen } = useGlobalContext();
+  const { sidebarOpen, setSidebarOpen } = useGlobalContext();
+
+  const { getUserData, userData } = useAuth();
+
+  useEffect(() => {
+    getUserData();
+  }, []);
+
+  const closeSidebar = () => {
+    setSidebarOpen(false);
+  };
   
   return (
-    <div className={`w-fit flex flex-col px-3 py-5 bg-dark h-full text-white md:left-0 md:relative absolute duration-300 z-40 ${sidebarOpen ? "left-0" : "left-[-500px]"} `}>
-      <NavLink to="/" className="flex items-center gap-3 p-2 my-2 rounded-md hover:bg-gray-700" end>
+    <div className={`w-fit flex flex-col px-3 md:sticky bottom-0 py-5 bg-dark h-full text-white md:left-0 absolute duration-300 z-40 ${sidebarOpen ? "left-0" : "left-[-500px]"} `}>
+      <NavLink to="/" onClick={closeSidebar} className="flex items-center gap-3 p-2 my-2 rounded-md hover:bg-gray-700" end>
         <MdOutlineDashboard />
         <span className="pr-16 text-[18px] font-medium">Home</span>
       </NavLink>
-      <NavLink to="/portfolio" className="flex items-center gap-3 p-2 my-2 rounded-md hover:bg-gray-700" end>
-        <BsWalletFill />
-        <span className="pr-16 text-[18px] font-medium">Portfolio</span>
-      </NavLink>
-      <NavLink to="/exchange" className="flex items-center gap-3 p-2 my-2 rounded-md hover:bg-gray-700" end>
+      <NavLink to="/invest" onClick={closeSidebar} className="flex items-center gap-3 p-2 my-2 rounded-md hover:bg-gray-700" end>
         <BsCurrencyExchange />
-        <span className="pr-16 text-[18px] font-medium">Exchange</span>
+        <span className="pr-16 text-[18px] font-medium">Invest</span>
       </NavLink>
-      <NavLink to="/bridge" className="flex items-center gap-3 p-2 my-2 rounded-md hover:bg-gray-700" end>
+      <NavLink to="/earnings" onClick={closeSidebar} className="flex items-center gap-3 p-2 my-2 rounded-md hover:bg-gray-700" end>
+        <PiFarmLight />
+        <span className="pr-16 text-[18px] font-medium">Earnings</span>
+      </NavLink>
+      <NavLink to="/team" onClick={closeSidebar} className="flex items-center gap-3 p-2 my-2 rounded-md hover:bg-gray-700" end>
+        <BsWalletFill />
+        <span className="pr-16 text-[18px] font-medium">Team</span>
+      </NavLink>
+      <NavLink to="/transactions" onClick={closeSidebar} className="flex items-center gap-3 p-2 my-2 rounded-md hover:bg-gray-700" end>
+        <PiFarmLight />
+        <span className="pr-16 text-[18px] font-medium">Transactions</span>
+      </NavLink>
+      {userData?.role == "admin" && <NavLink to="/admin" onClick={closeSidebar} className="flex items-center gap-3 p-2 my-2 rounded-md hover:bg-gray-700" end>
+        <IoMdTrendingUp />
+        <span className="pr-16 text-[18px] font-medium">Admin</span>
+      </NavLink>}
+      {/* <NavLink to="/bridge" className="flex items-center gap-3 p-2 my-2 rounded-md hover:bg-gray-700" end>
         <TbBuildingBridge2 />
         <span className="pr-16 text-[18px] font-medium">Bridge</span>
-      </NavLink>
-      <NavLink to="/farm" className="flex items-center gap-3 p-2 my-2 rounded-md hover:bg-gray-700" end>
-        <PiFarmLight />
-        <span className="pr-16 text-[18px] font-medium">Farm</span>
       </NavLink>
       <NavLink to="/omnicoin" className="flex items-center gap-3 p-2 my-2 rounded-md hover:bg-gray-700" end>
         <FaCreativeCommonsSa />
@@ -49,7 +66,7 @@ const Sidebar = () => {
       <NavLink to="/traders" className="flex items-center gap-3 p-2 my-2 rounded-md hover:bg-gray-700" end>
         <IoMdTrendingUp />
         <span className="pr-16 text-[18px] font-medium">Traders</span>
-      </NavLink>
+      </NavLink> */}
       {/* {MenuItems.map((item, index) => (
         <NavLink
           key={index}

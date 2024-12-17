@@ -2,6 +2,7 @@ import { createContext, ReactNode, useContext, useState } from "react";
 
 interface GlobalContextType {
   sidebarOpen: boolean;
+  setSidebarOpen: (value: boolean) => void;
   toggleSidebar: () => void;
 }
 
@@ -18,6 +19,7 @@ export const ContextProvider = ({children}: {children: ReactNode}) => {
   
   const stateValue: GlobalContextType = {
     sidebarOpen,
+    setSidebarOpen,
     toggleSidebar
   };
   
