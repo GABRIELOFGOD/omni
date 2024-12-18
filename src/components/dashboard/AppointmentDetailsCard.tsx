@@ -1,7 +1,4 @@
-// import { FaCreativeCommonsSa } from "react-icons/fa"
-import { candlestickData } from "../../utils/chartData"
-import Advertisement from "../Advertisement"
-// import CandlestickChart from "../chart/CandlestickChart"
+
 import AreaChart from "../chart/AreaChart"
 
 const AppointmentDetailsCard = () => {

@@ -13,7 +13,6 @@ const Login = ({ toggle }: { toggle: () => void }) => {
     e.preventDefault()
     try {
       const data = await login(email, password);
-      console.log("data from useLogin", data);
       sessionStorage.setItem('token', data.token);
       toast.success('Login successful', {
         duration: 5000,

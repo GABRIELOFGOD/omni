@@ -25,7 +25,6 @@
 
 // export default Selector
 
-import { ICountry, IState } from "country-state-city";
 
 interface ISelector<T> {
   data: T[]; // Array of either ICountry or IState

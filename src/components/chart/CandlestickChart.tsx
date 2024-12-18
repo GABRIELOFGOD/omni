@@ -7,7 +7,7 @@ import {
 } from 'lightweight-charts';
 
 interface CandlestickChartProps {
-  data: CandlestickData[]; // Data for the candlestick chart
+  data: CandlestickData[];
 }
 
 const CandlestickChart: React.FC<CandlestickChartProps> = ({ data }) => {

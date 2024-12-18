@@ -1,27 +1,19 @@
-import { IoIosArrowDown } from "react-icons/io";
 import { BsCoin } from "react-icons/bs";
 import { Link } from "react-router-dom";
-import { BiMenu, BiUser } from "react-icons/bi";
+import { BiMenu } from "react-icons/bi";
 import { useGlobalContext } from "../../context/GlobalContext";
-import { RiArrowDropDownLine } from "react-icons/ri";
-import { GoCopy } from "react-icons/go";
 import useAuth from "../../hooks/useAuth";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { formatMoney } from "../dashboard/AppointmentCards";
+import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 const Header = () => {
   const { toggleSidebar } = useGlobalContext();
   const { userData, getUserData } = useAuth();
-  const [showMenu, setShowMenu] = useState(false);
   
   useEffect(() => {
     getUserData();
   }, []);
-
-  const logout = () => {
-    sessionStorage.removeItem("token");
-    window.location.href = "/";
-  }
   
   return (
     <div className="py-2 md:py-4 shadow-sm sticky top-0 left-0 z-40 bg-secondary px-3 md:px-20 flex justify-between">
@@ -112,11 +104,7 @@ const Header = () => {
             </div>
           </button> */}
           <div>
-            <button
-              className="py-2 px-6 text-white bg-primary font-semibold rounded-md"
-            >
-              Connect wallet
-            </button>
+            <ConnectButton />
           </div>
         </div>
       </div>
