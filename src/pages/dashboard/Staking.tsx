@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom"
 
 const Staking = () => {
   const [omniRate, setOmniRate] = useState("");
+  const [promoRate, setPromoRate] = useState("");
+  
   const { getUserData, userData } = useAuth();
   const navigation = useNavigate();
 
@@ -25,7 +27,6 @@ const Staking = () => {
   }, [userData]);
 
   const updateRate = async () => {
-    
     if (omniRate == "0") {
       toast.error("Please enter a valid rate", {
         position: "top-right"
@@ -41,6 +42,34 @@ const Staking = () => {
           "Authorization": `Bearer ${sessionStorage.getItem("token")}`
         },
         body: JSON.stringify({ amount: omniRate })
+      });
+      const res = await req.json();
+      if (!req.ok) {
+        toast.error(res.message);
+      } else {
+        toast.success(res.message);
+      }
+    } catch (error: any) {
+      toast.error(error.message);      
+    }
+  }
+
+  const updatePromoRate = async () => {
+    if (promoRate == "0") {
+      toast.error("Please enter a valid rate", {
+        position: "top-right"
+      });
+      return
+    }
+    
+    try {
+      const req = await fetch(`${BASEURL}/investment/promotion`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${sessionStorage.getItem("token")}`
+        },
+        body: JSON.stringify({ amount: promoRate })
       });
       const res = await req.json();
       if (!req.ok) {
@@ -69,7 +98,25 @@ const Staking = () => {
             onClick={updateRate}
             className="p-2 bg-blue-500 text-white rounded-md"
           >
-            Update rate
+            Update ROI
+          </button>
+        </div>
+      </div>
+      <div>
+        <p className="font-semibold text-xl">Promotional Income Rate</p>
+        <div>
+          <input
+            type="text"
+            value={promoRate}
+            onChange={(e) => setPromoRate(e.target.value)}
+            placeholder="Enter rate"
+            className="w-full p-2 rounded-md bg-dark text-primary outline-none"
+          />
+          <button
+            onClick={updatePromoRate}
+            className="p-2 bg-blue-500 text-white rounded-md"
+          >
+            Update Promotion Rate
           </button>
         </div>
       </div>

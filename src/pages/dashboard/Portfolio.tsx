@@ -3,8 +3,11 @@ import useAuth from "../../hooks/useAuth";
 import { formatMoney } from "../../components/dashboard/AppointmentCards";
 import { toast } from "sonner";
 import useInvestment from "../../hooks/useInvestment";
+import ActivateAccountModal from "../../components/dashboard/ActivateAccountModal";
 
 const Portfolio = () => {
+  const [openActivateAccountModal, setOpenActivateAccountModal] = useState(false);
+  
   const { userData, getUserData } = useAuth();
   const [referralLink, setReferralLink] = useState("");
 
@@ -51,7 +54,7 @@ const Portfolio = () => {
         </div>
       </div>
       <div className={`w-full px-3 text-center py-1 text-[8px] md:text-sm font-semibold text-red-600 bg-red-200 rounded-lg ${userData?.accountActivated ? "hidden" : "flex"}`}>
-        <p className="w-full text-center">Your account is inactive, please activate your account to start earning. <span className="font-bold underline cursor-pointer">Click here</span></p>
+        <p className="w-full text-center">Your account is inactive, please activate your account to start earning. <span onClick={() => setOpenActivateAccountModal(true)} className="font-bold underline cursor-pointer">Click here</span></p>
       </div>
       
       <div className="flex flex-col gap-10 py-5">
@@ -166,6 +169,7 @@ const Portfolio = () => {
           </div>
         </div>
       </div> */}
+      <ActivateAccountModal open={openActivateAccountModal} setOpen={setOpenActivateAccountModal} />
     </div>
   )
 }

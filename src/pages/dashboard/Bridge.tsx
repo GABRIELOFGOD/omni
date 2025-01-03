@@ -3,6 +3,7 @@ import useAuth from "../../hooks/useAuth";
 import { Investment, UserRank } from "../../utils/index.d";
 import InvestmentContractDropdown from "../../components/dashboard/InvestmentContractDropdown";
 import InvestmentContractClaim from "../../components/dashboard/InvestmentContractClaim";
+import { formatMoney } from "../../components/dashboard/AppointmentCards";
 
 export const getSafeValue = (value: any): number => {
   return typeof value === "number" ? value : parseFloat(value || "0");
@@ -18,6 +19,7 @@ const Bridge = () => {
 
   useEffect(() => {
     if (userData) {
+      console.log(userData);
       setInvestments(userData.investments);
     }
   }, [userData]);
@@ -32,7 +34,7 @@ const Bridge = () => {
             <p className="text-center text-neutral-400 py-5">No staking found</p> :
             <div className="flex flex-col gap-3">
               {
-                investments.map((investment, index) => (
+                investments.filter(invest => invest.type === "investment").map((investment, index) => (
                   <InvestmentContractDropdown key={index} index={index} investment={investment} />
                 ))
               }
@@ -58,7 +60,7 @@ const Bridge = () => {
         <p className="text-lg font-semibold">Staking Rewards</p>
         <div className="flex flex-col gap-3">
           {
-            investments.map((investment, index) => (
+            investments.filter(invest => invest.type === "investment").map((investment, index) => (
               <InvestmentContractClaim key={index} index={index} investment={investment} />
             ))
           }
@@ -98,10 +100,10 @@ const Bridge = () => {
             </div>
             <div className="flex justify-between items-center py-2">
               <p>Available for Claim</p>
-              <p> ${userData?.claimable}</p>
+              <p> ${formatMoney(userData?.oneDollar || 0)}</p>
             </div>
             <button
-              className={` text-white rounded-md px-3 py-3 ${userData?.claimable == 0.0000 ? "bg-opacity-50 w-full cursor-not-allowed bg-gray-300" : "bg-primary"}`}
+              className={` text-white rounded-md px-3 py-3 ${userData?.oneDollar == 0.0000 ? "bg-opacity-50 w-full cursor-not-allowed bg-gray-300" : "bg-primary"}`}
               onClick={() => console.log("Claiming investment")}
             >
               claim
@@ -121,10 +123,10 @@ const Bridge = () => {
             </div>
             <div className="flex justify-between items-center py-2">
               <p>Available for Claim</p>
-              <p> ${userData?.claimable}</p>
+              <p> ${formatMoney(userData?.promotion || 0)}</p>
             </div>
             <button
-              className={` text-white rounded-md px-3 py-3 ${userData?.claimable == 0.0000 ? "bg-opacity-50 w-full cursor-not-allowed bg-gray-300" : "bg-primary"}`}
+              className={` text-white rounded-md px-3 py-3 ${userData?.promotion == 0.0000 ? "bg-opacity-50 w-full cursor-not-allowed bg-gray-300" : "bg-primary"}`}
               onClick={() => console.log("Claiming investment")}
             >
               claim

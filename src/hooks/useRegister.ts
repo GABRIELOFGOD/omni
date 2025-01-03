@@ -3,6 +3,16 @@ import { BASEURL } from "../context/GlobalContext";
 import { UserRegisterData } from "../utils";
 
 const registerCall = async (data: UserRegisterData) => {
+  // const location = useLocation();
+  // const queryParams = new URLSearchParams(location.search);
+  // const ref = queryParams.get('ref');
+
+  // useEffect(() => {
+  //   if (ref) {
+  //     data.referralCode = ref;
+  //   }
+  // }, [ref]);
+  
   try {
     const request = await fetch(`${BASEURL}/user/register`, {
       method: "POST",
@@ -12,7 +22,6 @@ const registerCall = async (data: UserRegisterData) => {
       body: JSON.stringify(data),
     });
     const response = await request.json();
-    console.log("response", response);
     if (!request.ok) {
       throw new Error(response.message);
     }

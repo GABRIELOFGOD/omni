@@ -28,7 +28,7 @@ const InvestmentContractDropdown = ({index, investment}: InvestmentContractDropd
         <div className="flex flex-col gap-2">
           <hr />
           <p className="flex justify-between"><span>Shares:</span> <span>{investment.amount/20}</span></p>
-          <p className="flex justify-between"><span>Current Earnings:</span> <span>${formatMoney(investment.amount)}</span></p>
+          <p className="flex justify-between"><span>Current Earnings:</span> <span>${formatMoney(investment.amountReturned)}</span></p>
           <p className="flex justify-between"><span>Profit Limit:</span> <span>${formatMoney(investment.amount*3)}</span></p>
         </div>
       }

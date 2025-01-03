@@ -22,6 +22,14 @@ const Register = ({ toggle }: { toggle: () => void }) => {
     confirmPassword: "",
   });
 
+  useEffect(() => {
+    const queryParams = new URLSearchParams(location.search);
+    const ref = queryParams.get("ref");
+    if (ref) {
+      setFormData((prevData) => ({ ...prevData, referralCode: ref }));
+    }
+  }, []);
+
   const [country, setCountry] = useState<ICountry | undefined>(countryData[0]);
   const [state, setState] = useState<IState | undefined>();
   const [city, setCity] = useState<ICity | undefined>();
@@ -75,14 +83,13 @@ const Register = ({ toggle }: { toggle: () => void }) => {
 
     try {
       const regRes = await registerUser(payload);
-      if(regRes && regRes.status == "fail" || regRes.status == "error") throw new Error(regRes.message);
-      toast.success(regRes.message, {
-        position: "top-right",
-        duration: 5000,
-      });
-      sessionStorage.setItem("token", JSON.stringify(regRes.token));
-      location.reload();
-      // toggle(); // Navigate to login
+      if (regRes.status === "success") {
+        toast.success("Registration successful!");
+        sessionStorage.setItem("token", regRes.token);
+        location.assign("/");
+      } else {
+        toast.error(regRes.message);
+      }
     } catch (error: any) {
       console.error(error);
       toast.error(error.message);

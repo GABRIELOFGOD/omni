@@ -1,0 +1,52 @@
+[
+  {
+    "id": 1,
+    "userId": 1,
+    "title": "Issue with account activation",
+    "description": "I activated my account, but I cannot access certain features.",
+    "status": "open",
+    "priority": "high",
+    "createdAt": "2024-12-23T10:00:00.000Z",
+    "updatedAt": "2024-12-23T10:00:00.000Z"
+  },
+  {
+    "id": 2,
+    "userId": 2,
+    "title": "Unable to claim referral bonus",
+    "description": "I referred a user, but my bonus hasn’t been credited yet.",
+    "status": "open",
+    "priority": "medium",
+    "createdAt": "2024-12-22T14:00:00.000Z",
+    "updatedAt": "2024-12-22T14:00:00.000Z"
+  },
+  {
+    "id": 3,
+    "userId": 1,
+    "title": "Incorrect balance displayed",
+    "description": "The balance on my dashboard is not updating correctly after recent transactions.",
+    "status": "in-progress",
+    "priority": "high",
+    "createdAt": "2024-12-21T09:30:00.000Z",
+    "updatedAt": "2024-12-24T16:00:00.000Z"
+  },
+  {
+    "id": 4,
+    "userId": 2,
+    "title": "Problem with withdrawing earnings",
+    "description": "I’m unable to withdraw my earnings to my linked account.",
+    "status": "resolved",
+    "priority": "high",
+    "createdAt": "2024-12-20T12:15:00.000Z",
+    "updatedAt": "2024-12-22T11:00:00.000Z"
+  },
+  {
+    "id": 5,
+    "userId": 1,
+    "title": "General query about promotions",
+    "description": "Can you provide more details about the current promotion scheme?",
+    "status": "open",
+    "priority": "low",
+    "createdAt": "2024-12-20T08:45:00.000Z",
+    "updatedAt": "2024-12-20T08:45:00.000Z"
+  }
+]

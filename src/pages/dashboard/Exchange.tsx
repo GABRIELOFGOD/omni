@@ -1,13 +1,22 @@
 import { useEffect, useState } from "react";
 import useUser from "../../hooks/useUser";
+import { UserData } from "../../utils";
 
 const Exchange = () => {
   const [refLevel, setRefLevel] = useState<number>(1);
+  const [userTeam, setUserTeam] = useState<UserData[]>([]);
+  
   const { getTeamData, team } = useUser();
 
   useEffect(() => {
     getTeamData();
   }, []);
+
+  useEffect(() => {
+    if (team) {
+      setUserTeam(team);
+    }
+  }, [team]);
   
   return (
     <div className="py-10 flex flex-col gap-5">
@@ -51,15 +60,15 @@ const Exchange = () => {
             </tr>
           </thead>
           <tbody>
-            {!team.length ?
+            {!userTeam.length || userTeam.length === 0 ?
               <tr>
                 <td colSpan={3} className="text-center text-gray-400">No Referrals</td>
               </tr> :
-              team?.map((member, index) => (
+              userTeam.map((member, index) => (
               <tr key={index} className="text-center">
                 <td className="py-2">{member.firstName}</td>
                 <td className="py-2">1</td>
-                <td className="py-2">{member.investments.reduce((amount, invest) => amount+invest.amount, 0)}</td>
+                {team && <td className="py-2">{member.investments.filter(invested => invested.type === "investment").reduce((amount, invest) => amount+invest.amount, 0)}</td>}
               </tr>
             ))}
           </tbody>

@@ -1,10 +1,10 @@
-import { BsCoin } from "react-icons/bs";
+// import { BsCoin } from "react-icons/bs";
 import { Link } from "react-router-dom";
 import { BiMenu } from "react-icons/bi";
 import { useGlobalContext } from "../../context/GlobalContext";
 import useAuth from "../../hooks/useAuth";
 import { useEffect } from "react";
-import { formatMoney } from "../dashboard/AppointmentCards";
+// import { formatMoney } from "../dashboard/AppointmentCards";
 import { ConnectButton } from "@rainbow-me/rainbowkit";
 
 const Header = () => {
@@ -42,20 +42,20 @@ const Header = () => {
         </div>
       </div> */}
       <div className="flex gap-10 my-auto">
-        <div className="md:flex hidden divide-x-2 gap-5">
+        {/* <div className="md:flex hidden divide-x-2 gap-5">
           <div className="flex my-auto gap-3">
             <div className="p-2 h-fit w-fit bg-primary text-white rounded-full">
               <BsCoin />
             </div>
             <p className="my-auto text-white  text-[16px]">${formatMoney(userData?.balance || 0)}</p>
           </div>
-          {/* <div className="flex m-auto gap-3 pl-5">
+          <div className="flex m-auto gap-3 pl-5">
             <div className="p-2 h-fit w-fit bg-primary text-white rounded-full">
               <BsCoin />
             </div>
             <p className="my-auto text-white  text-[16px]">${formatMoney(userData?.claimable || 0)}</p>
-          </div> */}
-        </div>
+          </div>
+        </div> */}
         <div className="flex gap-3">
           <div className={`h-2 w-2 rounded-full my-auto ${userData?.accountActivated ? "bg-green-500" : "bg-red-500"}`}></div>
           {/* <button

@@ -8,7 +8,15 @@ import Portfolio from "../pages/dashboard/Portfolio";
 import Farm from "../pages/dashboard/Farm";
 import Bonds from "../pages/dashboard/Bonds";
 import Traders from "../pages/dashboard/Traders";
-import Staking from "../pages/dashboard/Staking";
+// import Staking from "../pages/dashboard/Staking";
+import Admin from "../pages/Admin";
+import Dashboard from "../pages/adminDashboard/Dashboard";
+import User from "../pages/adminDashboard/User";
+// import Withdrawal from "../pages/adminDashboard/Withdrawal";
+// import WithdrawalReport from "../pages/adminDashboard/WithdrawalReport";
+import Investments from "../pages/adminDashboard/Investments";
+import Support from "../pages/adminDashboard/Support";
+import AdminControl from "../pages/adminDashboard/AdminControl";
 
 export const router = createBrowserRouter([
   {
@@ -40,10 +48,6 @@ export const router = createBrowserRouter([
         element: <Farm />
       },
       {
-        path: "/admin",
-        element: <Staking />
-      },
-      {
         path: "/bonds",
         element: <Bonds />
       },
@@ -52,5 +56,39 @@ export const router = createBrowserRouter([
         element: <Traders />
       }
     ]
-  }
+  },
+  {
+    path: "dashboard",
+    element: <Admin />,
+    children: [
+      {
+        path: "",
+        element: <Dashboard />
+      },
+      {
+        path: "users",
+        element: <User />
+      },
+      // {
+      //   path: "requests",
+      //   element: <Withdrawal />
+      // },
+      // {
+      //   path: "withrawal-report",
+      //   element: <WithdrawalReport />
+      // },
+      {
+        path: "investments",
+        element: <Investments />
+      },
+      {
+        path: "support",
+        element: <Support />
+      },
+      {
+        path: "control",
+        element: <AdminControl />
+      },
+    ]
+  },
 ]);

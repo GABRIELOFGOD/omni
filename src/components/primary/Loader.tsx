@@ -3,6 +3,7 @@ import { Circles } from "react-loader-spinner"
 export interface LoaderProps {
   height?: number;
   width?: number;
+  color?: string;
 }
 
 const Loader = (loader: LoaderProps) => {

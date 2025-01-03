@@ -8,7 +8,7 @@ const Dashboard = () => {
     <div>
       <div className="h-screen">
         <Header />
-        <div className="flex h-full">
+        <div className="flex h-screen">
           <Sidebar />
           <div className="w-full p-2">
             <Outlet />

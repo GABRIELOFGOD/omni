@@ -6,6 +6,7 @@ import { useGlobalContext } from "../../context/GlobalContext";
 import { IoMdTrendingUp } from "react-icons/io";
 import useAuth from "../../hooks/useAuth";
 import { useEffect } from "react";
+import { LuLogOut } from "react-icons/lu";
 // import { MenuItems } from "../../utils/constants"
 
 const Sidebar = () => {
@@ -22,7 +23,7 @@ const Sidebar = () => {
   };
   
   return (
-    <div className={`w-fit flex flex-col px-3 md:sticky bottom-0 py-5 bg-dark h-full text-white md:left-0 absolute duration-300 z-40 ${sidebarOpen ? "left-0" : "left-[-500px]"} `}>
+    <div className={`w-fit flex flex-col px-3 md:sticky top-0 py-5 bg-dark h-full text-white md:left-0 absolute duration-300 z-40 ${sidebarOpen ? "left-0" : "left-[-500px]"} `}>
       <NavLink to="/" onClick={closeSidebar} className="flex items-center gap-3 p-2 my-2 rounded-md hover:bg-gray-700" end>
         <MdOutlineDashboard />
         <span className="pr-16 text-[18px] font-medium">Home</span>
@@ -43,10 +44,21 @@ const Sidebar = () => {
         <PiFarmLight />
         <span className="pr-16 text-[18px] font-medium">Transactions</span>
       </NavLink>
-      {userData?.role == "admin" && <NavLink to="/admin" onClick={closeSidebar} className="flex items-center gap-3 p-2 my-2 rounded-md hover:bg-gray-700" end>
+      {userData?.role == "admin" && <NavLink to="/dashboard" onClick={closeSidebar} className="flex items-center gap-3 p-2 my-2 rounded-md hover:bg-gray-700" end>
         <IoMdTrendingUp />
         <span className="pr-16 text-[18px] font-medium">Admin</span>
       </NavLink>}
+      <button
+        onClick={() => {
+          sessionStorage.removeItem('token');
+          window.location.reload();
+        }}
+        className="flex items-center gap-3 p-2 my-2 rounded-md hover:bg-gray-700" 
+      >
+        <LuLogOut />
+        <span className="pr-16 text-[18px] font-medium">Logout</span>
+      </button>
+      
       {/* <NavLink to="/bridge" className="flex items-center gap-3 p-2 my-2 rounded-md hover:bg-gray-700" end>
         <TbBuildingBridge2 />
         <span className="pr-16 text-[18px] font-medium">Bridge</span>
